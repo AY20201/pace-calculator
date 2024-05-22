@@ -1,0 +1,134 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.paceRow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 100px;
+}
+
+.button {
+    border: solid;
+    padding: 12px 18px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 2px;
+}
+
+.button:hover:enabled {
+    background-color: rgb(228, 224, 247);
+}
+
+.button:active:enabled
+{
+    background-color: rgb(61, 45, 142);
+    color: rgb(228, 224, 247);
+}
+
+.inputField {
+    padding: 12px 12px;
+    border: solid;
+    font-size: 18px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 2px;
+    width: 100px;
+}
+
+.inputField:focus
+{
+    background-color: rgb(237, 233, 255)
+}
+
+.timeField {
+    padding: 12px 12px;
+    border: solid;
+    font-size: 18px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 2px;
+    width: 400px;
+}
+
+.timeField:focus
+{
+    background-color: rgb(237, 233, 255)
+}
+
+.paceTable {
+    font-size: 16px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-collapse: collapse;
+    width: 800px;
+}
+
+.tableElement {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.timeColumn {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    width: 250px;
+}
+
+.dropdown {
+    border: solid;
+    padding: 11px;
+    padding-right: 6px;
+    padding-left: 6px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 2px;
+}
+
+.dropdown:hover:enabled {
+    background-color: rgb(228, 224, 247);
+}
+
+.errorText {
+    font-size: 16px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: red;
+}
+
+.labelText {
+    font-size: 20px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.descriptionText {
+    font-size: 18px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: rgb(66, 66, 66)
+}
+
+.title {
+    font-size: 40px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: rgb(0, 0, 0)
+}
+
+.titleContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px;
+}
+
+.linkText {
+    font-size: 18px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
