@@ -128,12 +128,12 @@ export default function Calculator(){
         return {"hours": hours, "minutes": minutes, "seconds": seconds};
     }
 
-    function GetEquivalentTime(time, distanceTraveled, newDistance, unit, unitToConvert){
+    function GetEquivalentTime(time, distanceTraveled, newDistance, unit, unitToConvert, exponent){
         let timeInSeconds = time.hours * 3600 + time.minutes * 60 + time.seconds;
-        let exponent = 1.08;
-        if(newDistance * unitConversions[unitToConvert + "KM"] < 1){
-            exponent = 1.13;
-        }
+        //let exponent = 1.06;
+        //if(newDistance * unitConversions[unitToConvert + "MILES"] <= 1 || distanceTraveled * unitConversions[unit + "MILES"] <= 1){
+            //exponent = 1.06;
+        //}
         //Pete Riegel formula
         let newTime = timeInSeconds * Math.pow((newDistance / (distanceTraveled * unitConversions[unit + unitToConvert])), exponent);
 
@@ -169,17 +169,17 @@ export default function Calculator(){
         };
 
         let equivalencies = {
-            "400m": FormatTime(GetEquivalentTime(time, distanceTraveled, 400, unit, "METERS")),
-            "800m": FormatTime(GetEquivalentTime(time, distanceTraveled, 800, unit, "METERS")),
-            "1500m": FormatTime(GetEquivalentTime(time, distanceTraveled, 1500, unit, "METERS")),
-            "1mi": FormatTime(GetEquivalentTime(time, distanceTraveled, 1, unit, "MILES")),
-            "3k": FormatTime(GetEquivalentTime(time, distanceTraveled, 3, unit, "KM")),
-            "2mi": FormatTime(GetEquivalentTime(time, distanceTraveled, 2, unit, "MILES")),
-            "5k": FormatTime(GetEquivalentTime(time, distanceTraveled, 5, unit, "KM")),
-            "8k": FormatTime(GetEquivalentTime(time, distanceTraveled, 8, unit, "KM")),
-            "10k" : FormatTime(GetEquivalentTime(time, distanceTraveled, 10, unit, "KM")),
-            "Half Marathon" : FormatTime(GetEquivalentTime(time, distanceTraveled, 21097.5, unit, "METERS")),
-            "Marathon" : FormatTime(GetEquivalentTime(time, distanceTraveled, 42195, unit, "METERS"))
+            "400m": FormatTime(GetEquivalentTime(time, distanceTraveled, 400, unit, "METERS", 1.13)),
+            "800m": FormatTime(GetEquivalentTime(time, distanceTraveled, 800, unit, "METERS", 1.11)),
+            "1500m": FormatTime(GetEquivalentTime(time, distanceTraveled, 1500, unit, "METERS", 1.1)),
+            "1mi": FormatTime(GetEquivalentTime(time, distanceTraveled, 1, unit, "MILES", 1.1)),
+            "3k": FormatTime(GetEquivalentTime(time, distanceTraveled, 3, unit, "KM", 1.1)),
+            "2mi": FormatTime(GetEquivalentTime(time, distanceTraveled, 2, unit, "MILES", 1.1)),
+            "5k": FormatTime(GetEquivalentTime(time, distanceTraveled, 5, unit, "KM", 1.09)),
+            "8k": FormatTime(GetEquivalentTime(time, distanceTraveled, 8, unit, "KM", 1.07)),
+            "10k" : FormatTime(GetEquivalentTime(time, distanceTraveled, 10, unit, "KM", 1.07)),
+            "Half Marathon" : FormatTime(GetEquivalentTime(time, distanceTraveled, 21097.5, unit, "METERS", 1.07)),
+            "Marathon" : FormatTime(GetEquivalentTime(time, distanceTraveled, 42195, unit, "METERS", 1.07))
         };
 
         setCalculatedPaces(paces);
@@ -281,10 +281,10 @@ export default function Calculator(){
             <div style={{display: 'flex', justifyContent: "center", alignItems: "center"}}>
                 <div style={{width: 800, textAlign: 'left', marginTop: 10, marginBottom: 100}}>
                     <p className={styles.descriptionText}>
-                        Equalivalent race times are estimated with the equation T2 = T1 * (D2 / D1)^1.08.
+                        Equalivalent race times are estimated with the equation T2 = T1 * (D2 / D1)^B.
                         This simple formula was devised by Pete Riegel and published in Runner's World in 1997. Riegel
-                        used 1.06 as the exponent. This calculator uses 1.08 for this value and 1.13 when D2 is less than 
-                        1 KM to yield more accurate results.
+                        used 1.06 as the exponent. This calculator uses a slighly different value (close to 1.06) for each distance.
+                        Keep in mind that this formula can produce misleading results, especially for 400m.
                     </p>
                     <p className={styles.descriptionText}>Other similar calculators:</p>
                     <div style={{display: 'flex', gap: '10px'}}>
