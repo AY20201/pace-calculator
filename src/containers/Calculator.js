@@ -18,6 +18,8 @@ export default function Calculator(){
     const [time, setTime] = useState({"hours": 0, "minutes": 0, "seconds": 0});
     const [timeText, setTimeText] = useState("");
     const [distance, setDistance] = useState(0);
+    const [customFieldPace, setCustomFieldPace] = useState({distance: 0, time: "-", unit: "MILES"})
+    const [customFieldEq, setCustomFieldEq] = useState({distance: 0, time: "-", unit: "MILES"})
     const [unit, setUnit] = useState("MILES");
     const [lastInput, setLastInput] = useState({distance: 0, unit: "MILES"})
     const [calculatedPaces, setCalculatedPaces] = useState({
@@ -145,6 +147,15 @@ export default function Calculator(){
         return {"hours": hours, "minutes": minutes, "seconds": seconds};
     }
 
+    function FillCustomField(distance, paceOrEq, time, distanceTraveled, unit, customUnit){
+        if(distance <= 0 || distance === ""){ return "-" }
+        if(paceOrEq === "pace"){
+            return FormatTime(GetPace(time, distanceTraveled, distance, unit, customUnit))
+        } else if (paceOrEq === "eq"){
+            return FormatTime(GetEquivalentTime(time, distanceTraveled, distance, unit, customUnit, 1.06))
+        }
+    }
+
     function GetPaces(time, distanceTraveled, unit){
         if(!CheckInputIsValid(time, distanceTraveled)){
             setErrorMessage("Please enter a valid time and distance to find paces");
@@ -169,6 +180,7 @@ export default function Calculator(){
             "Half Marathon": FormatTime(GetPace(time, distanceTraveled, 21097.5, unit, "METERS")),
             "Marathon": FormatTime(GetPace(time, distanceTraveled, 42195, unit, "METERS"))
         };
+        setCustomFieldPace({...customFieldPace, time: FillCustomField(customFieldPace.distance, "pace", time, distanceTraveled, unit, customFieldPace.unit)});
 
         let equivalencies = {
             "400m": FormatTime(GetEquivalentTime(time, distanceTraveled, 400, unit, "METERS", 1.13)),
@@ -183,6 +195,7 @@ export default function Calculator(){
             "Half Marathon" : FormatTime(GetEquivalentTime(time, distanceTraveled, 21097.5, unit, "METERS", 1.07)),
             "Marathon" : FormatTime(GetEquivalentTime(time, distanceTraveled, 42195, unit, "METERS", 1.07))
         };
+        setCustomFieldEq({...customFieldEq, time: FillCustomField(customFieldEq.distance, "eq", time, distanceTraveled, unit, customFieldEq.unit)});
 
         setCalculatedPaces(paces);
         setEquaivalentTimes(equivalencies);
@@ -254,6 +267,17 @@ export default function Calculator(){
                         <PaceTableRow distance={"10k"} unit={"KM"}/>
                         <PaceTableRow distance={"Half Marathon"} unit={"METERS"}/>
                         <PaceTableRow distance={"Marathon"} unit={"METERS"}/>
+                        <tr>
+                            <td className={styles.tableElement}>
+                                <input className={styles.customDistanceField} placeholder="Custom" type="number" onChange={e => setCustomFieldPace({...customFieldPace, distance: e.target.value})}/>
+                                <select name="units" id="units" className={styles.customUnitDropdown} onChange={(e) => setCustomFieldPace({...customFieldPace, unit: e.target.value})}>
+                                    <option value="MILES">MI</option> 
+                                    <option value="KM">KM</option> 
+                                    <option value="METERS">M</option> 
+                                </select>
+                            </td>
+                            <td className={styles.tableElement}>{customFieldPace.time}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -278,6 +302,17 @@ export default function Calculator(){
                         <EquivalencyTableRow distance={"10k"}/>
                         <EquivalencyTableRow distance={"Half Marathon"}/>
                         <EquivalencyTableRow distance={"Marathon"}/>
+                        <tr>
+                            <td className={styles.tableElement}>
+                                <input className={styles.customDistanceField} placeholder="Custom" type="number" onChange={e => setCustomFieldEq({...customFieldEq, distance: e.target.value})}/>
+                                <select name="units" id="units" className={styles.customUnitDropdown} onChange={(e) => setCustomFieldEq({...customFieldEq, unit: e.target.value})}>
+                                    <option value="MILES">MI</option> 
+                                    <option value="KM">KM</option> 
+                                    <option value="METERS">M</option> 
+                                </select>
+                            </td>
+                            <td className={styles.tableElement}>{customFieldEq.time}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
