@@ -57,6 +57,37 @@
     width: 400px;
 }
 
+.customDistanceField {
+    padding: 0px 0px;
+    border: none;
+    font-size: 16px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 1px;
+    border-color: #dddddd;
+    width: 150px;
+}
+
+.customDistanceField:focus
+{
+    outline: none;
+}
+
+.customDistanceField::placeholder
+{
+    color: rgb(175, 175, 175)
+}
+
+.customUnitDropdown
+{
+    border: none;
+    padding: 1px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: rgb(175, 175, 175);
+}
+
 .timeField:focus
 {
     background-color: rgb(237, 233, 255)
