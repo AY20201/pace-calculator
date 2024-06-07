@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/pace-calculator/static/css/main.1276113a.css",
+    "main.js": "/pace-calculator/static/js/main.673918da.js",
+    "static/js/453.358f3e8b.chunk.js": "/pace-calculator/static/js/453.358f3e8b.chunk.js",
+    "index.html": "/pace-calculator/index.html",
+    "main.1276113a.css.map": "/pace-calculator/static/css/main.1276113a.css.map",
+    "main.673918da.js.map": "/pace-calculator/static/js/main.673918da.js.map",
+    "453.358f3e8b.chunk.js.map": "/pace-calculator/static/js/453.358f3e8b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1276113a.css",
+    "static/js/main.673918da.js"
+  ]
+}
